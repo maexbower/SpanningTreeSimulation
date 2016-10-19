@@ -30,14 +30,15 @@ int main(int argc, char* argv[])
         return 1;
     }
     writeDebug("Öffne Datei");
-    dateieinlesen(filename);
-    testfunction();
+
+    testfunction(filename);
     return 0;
 }
-void testfunction()
+void testfunction(char* filename)
 {
     p_node nodelist;
     nodelist = 0;
+    dateieinlesen(filename, &nodelist);
     p_link linklist;
     linklist = 0;
     p_node testnode = createNode("Beta1", 1);
@@ -75,7 +76,7 @@ void testfunction()
         writeDebug("Das Element befindet sich noch in der Liste?");
         writeDebug(itoa(isInLinkList(testlink, &linklist)));
         writeDebug("Das Element von Node 1 zu 2 befindet sich noch in der Liste?");
-        writeDebug(itoa(linkExists(testnode, testnode2, &linklist)));
+        writeDebug(ptoa(linkExists(testnode, testnode2, &linklist)));
         writeDebug("Füge zweiten Link hinzu:");
         addLinkToLinklist(testlink2,&linklist);
         writeDebug("Entferne link aus Liste");

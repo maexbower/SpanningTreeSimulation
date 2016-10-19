@@ -239,14 +239,14 @@ int isInLinkList(p_link link, p_link *linklist)
     }
     return 0;
 }
-int linkExists(p_node start, p_node ziel, p_link *linklist)
+p_link linkExists(p_node start, p_node ziel, p_link *linklist)
 {
     p_link tmp = *linklist;
     while(tmp != 0)
     {
         if(((tmp->start == start) && (tmp->ziel == ziel)|| (tmp->start == ziel) && (tmp->ziel == start)))
         {
-            return 1;
+            return tmp;
         }else
         {
             tmp = tmp->nachfolger;

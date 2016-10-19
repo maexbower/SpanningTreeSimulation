@@ -26,9 +26,11 @@
 #define STDCOSTSTOROOT 0
 #define STDNACHFOLGER 0
 #define STDVORGAENGER 0
+//Standardwerte für Links
+#define STDCOST 0
 //Alles Andere wird durch gegebene Werte oder das Element selbst ersetzt.
 
 ////////////////////////////////
 // pre define Functions
 ////////////////////////////////
-void testfunction();
+void testfunction(char* filename);

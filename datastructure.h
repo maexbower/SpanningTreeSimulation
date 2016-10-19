@@ -53,7 +53,7 @@ int isInNodeList(p_node node, p_node *nodelist);
 int isInLinkList(p_link link, p_link *linklist);
 p_node nodeExitsByName(char *name, p_node *nodelist);
 p_node nodeExitsByID(int id, p_node *nodelist);
-int linkExists(p_node start, p_node ziel, p_link *linklist);
+p_link linkExists(p_node start, p_node ziel, p_link *linklist);
 //Delete
 void deleteNode(p_node *node);
 void deleteLink(p_link *link);

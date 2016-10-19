@@ -7,12 +7,14 @@
 #ifndef SPANNINGTREE_DATEIEINLESEN_H
 #include "dateieinlesen.h"
 #endif //SPANNINGTREE_DATEIEINLESEN_H
-
+#ifndef SPANNINGTREE_DATASTRUCTURE_H
+#include "datastructure.h"
+#endif //SPANNINGTREE_DATASTRUCTURE_H
 
 ////////////////////////////////
 ///Functions
 ////////////////////////////////
-int dateieinlesen(char* filepath) {
+int dateieinlesen(char* filepath, p_node *nodelist) {
 
 	FILE *graph;
 	char puffer[ZEILENLAENGE];
@@ -51,11 +53,31 @@ int dateieinlesen(char* filepath) {
                     writeDebug("HIER KOMMT EIN KNOTEN");
 					sscanf(puffer, "%s = %d" , knotenA, &id);
 					printf("Knoten: %s mit der ID: %d\n", knotenA, id);
+					p_node nodeA = nodeExitsByName(knotenA, nodelist);
+					if(nodeA == 0){
+						nodeA = createNode(knotenA, MAX_NODE_ID);
+						addNewNode(nodeA, nodelist);
+					}else{
+						writeDebug("Node existiert bereits. Dies sollte nicht passieren.");
+					}
 				}
 				else if(puffer[i] == '-'){
                     writeDebug("HIER KOMMT EINE ZUWEISUNG");
 					sscanf(puffer,"%s - %s : %d", knotenA, knotenB, &kosten);
 					printf("Knoten: %s und Konten: %s haben eine Verbindung: %d\n", knotenA, knotenB, kosten);
+
+					//Checke ob Knoten A in Nodelist
+					p_node nodeA = nodeExitsByName(knotenA, nodelist);
+					if(nodeA == 0){
+						nodeA = createNode(knotenA, MAX_NODE_ID);
+						addNewNode(nodeA, nodelist);
+					}
+					//Checke ob Knoten B in Nodelist
+					p_node nodeB = nodeExitsByName(knotenB, nodelist);
+					if(nodeB == 0) {
+						nodeB = createNode(knotenB, MAX_NODE_ID);
+						addNewNode(nodeB, nodelist);
+					}
 				}
 			}
 		}
@@ -111,4 +133,53 @@ int closeFile(FILE *p_file)
 	writeDebug("Datei wurde geschlossen. Der Returncode ist:");
 	writeDebug(itoa(result));
 	return 0;
+}
+p_node addNewNode(p_node node, p_node *nodelist)
+{
+	p_node tmpNode = *nodelist;
+	p_link tmpLink;
+	while(tmpNode != 0)
+	{
+		//Add new Node to existing Node Linklist
+		tmpLink = linkExists(node, tmpNode, &tmpNode->plink);
+		if(tmpLink == 0)
+		{
+			tmpLink = createLink(STDCOST, &node, &tmpNode);
+			addLinkToLinklist(tmpLink, &tmpNode->plink);
+		}
+		//Add existing Node to new Node Linklist
+		tmpLink = linkExists(node, tmpNode, &node->plink);
+		if(tmpLink == 0)
+		{
+			tmpLink = createLink(STDCOST, &node, &tmpNode);
+			addLinkToLinklist(tmpLink, &node->plink);
+		}
+		tmpNode = tmpNode->nachfolger;
+	}
+	//füge alle bestehenden Nodes zur Linklist hinzu.
+	addNodeToList(node, nodelist);
+	printNode(node);
+	return *nodelist;
+}
+p_node addNewLink(p_node start, p_node ziel, int kosten, p_node *nodelist)
+{
+	p_link tmpLink;
+	//Add new Node to existing Node Linklist
+	tmpLink = linkExists(start, ziel, &start->plink);
+	if(tmpLink == 0)
+	{
+		writeDebug("Link existiert nicht. Das sollte nicht passieren!");
+		return 0;
+	}
+	tmpLink->kosten = kosten;
+
+	//Add existing Node to new Node Linklist
+	tmpLink = linkExists(start, ziel, &ziel->plink);
+	if(tmpLink == 0)
+	{
+		writeDebug("Link existiert nicht. Das sollte nicht passieren!");
+		return 0;
+	}
+	tmpLink->kosten = kosten;
+	return *nodelist;
 }
