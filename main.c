@@ -10,14 +10,14 @@
 #ifndef SPANNINGTREE_DATEIEINLESEN_H
 #include "dateieinlesen.h"
 #endif //SPANNINGTREE_DATEIEINLESEN_H
-void testfunction();
+
 int main(int argc, char* argv[])
 {
     setbuf(stdout, NULL);
     //Prüfe die Parameter, mit denen das Programm aufgerufen wurde.
     if(argc < 2 || argc > 3) {
-        writeDebug(
-                "Anzahl der Argumente passt nicht.\nEs muss mindestens die Topologiedatei angegeben sein\nAufruf: spt <ToPo File> [Name des Graphen]\n");
+        writeDebug("Anzahl der Argumente passt nicht.\nEs muss mindestens die Topologiedatei angegeben sein\nAufruf: spt <ToPo File> [Name des Graphen]\n");
+        return 1;
     }
     //Kopiere den ersten Parameter in eine persitente Variable.
     char *filename;
