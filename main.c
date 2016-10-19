@@ -1,15 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#ifndef SPANNINGTREE_MAIN_H
+#include "main.h"
+#endif //SPANNINGTREE_MAIN_H
 #ifndef SPANNINGTREE_MYTOOLS_H
 #include "mytools.h"
-#endif //SPANNINGTREE_FILEOPTIONS_H
-#ifndef SPANNINGTREE_FILEOPTIONS_H
-#include "fileoptions.h"
-#endif //SPANNINGTREE_FILEOPTIONS_H
-#ifndef SPANNINGTREE_DATASTRUCTURE_H_H
+#endif //SPANNINGTREE_MYTOOLS_H
+#ifndef SPANNINGTREE_DATASTRUCTURE_H
 #include "datastructure.h"
-#endif //SPANNINGTREE_SPANNINGTREE_H
+#endif //SPANNINGTREE_DATASTRUCTURE_H
+#ifndef SPANNINGTREE_DATEIEINLESEN_H
+#include "dateieinlesen.h"
+#endif //SPANNINGTREE_DATEIEINLESEN_H
 void testfunction();
 int main(int argc, char* argv[])
 {
@@ -29,6 +29,8 @@ int main(int argc, char* argv[])
         writeDebug("Datei nicht lesbar.");
         return 1;
     }
+    writeDebug("Öffne Datei");
+    dateieinlesen(filename);
     testfunction();
     return 0;
 }
