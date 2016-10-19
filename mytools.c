@@ -48,5 +48,8 @@ char* itoa (int integer)
 }
 char* ptoa(void *pointer)
 {
-    return itoa((int)pointer);
+    char *string;
+    string = xmalloc(sizeof(long)*sizeof(char));
+    sprintf(string, "%p", pointer);
+    return string;
 }

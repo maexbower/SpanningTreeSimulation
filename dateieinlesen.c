@@ -92,7 +92,7 @@ FILE* openFile(char *filename)
 	p_file = fopen(filename, "r");
 	if(p_file != 0){
 		writeDebug("Datei wurde erfolgreich geöffnet. Pointer ist:");
-		writeDebug(itoa((int)p_file));
+		writeDebug(ptoa(p_file));
 		return p_file;
 	}
 	writeDebug("Datei konnte nicht geöffnet werden. Der Fehlercode ist:");
