@@ -42,6 +42,7 @@ p_node createNode(char *new_name, int new_nodeID);
 //Print
 void printNode(p_node this_node);
 void printLink(p_link this_link);
+void printStructure(p_node *nodelist);
 //AddToList
 p_node addNodeToList(p_node node, p_node *nodelist);
 p_link addLinkToLinklist(p_link link, p_link *linklist);

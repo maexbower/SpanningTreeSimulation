@@ -30,10 +30,17 @@ int main(int argc, char* argv[])
         return 1;
     }
     writeDebug("Öffne Datei");
+    p_node nodelist;
+    nodelist = 0;
+    dateieinlesen(filename, &nodelist);
+    //ToDo start Spanning Tree Actions
+    printStructure(&nodelist);
 
-    testfunction(filename);
+    //testfunction(filename);
     return 0;
 }
+
+
 void testfunction(char* filename)
 {
     p_node nodelist;

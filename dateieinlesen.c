@@ -65,19 +65,21 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
                     writeDebug("HIER KOMMT EINE ZUWEISUNG");
 					sscanf(puffer,"%s - %s : %d", knotenA, knotenB, &kosten);
 					printf("Knoten: %s und Konten: %s haben eine Verbindung: %d\n", knotenA, knotenB, kosten);
-
 					//Checke ob Knoten A in Nodelist
 					p_node nodeA = nodeExitsByName(knotenA, nodelist);
 					if(nodeA == 0){
+                        writeDebug("Knoten 1 existiert noch nicht.");
 						nodeA = createNode(knotenA, MAX_NODE_ID);
 						addNewNode(nodeA, nodelist);
 					}
 					//Checke ob Knoten B in Nodelist
 					p_node nodeB = nodeExitsByName(knotenB, nodelist);
 					if(nodeB == 0) {
+                        writeDebug("Knoten 2 existiert noch nicht.");
 						nodeB = createNode(knotenB, MAX_NODE_ID);
 						addNewNode(nodeB, nodelist);
 					}
+                    addNewLink(nodeA, nodeB, kosten, nodelist);
 				}
 			}
 		}

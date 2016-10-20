@@ -120,7 +120,7 @@ p_node nodeExitsByName(char *name, p_node *nodelist)
     p_node tmp = *nodelist;
     while(tmp != 0)
     {
-        if(strcmp(tmp->name, name) > 0 )
+        if(strcmp(tmp->name, name) == 0 )
         {
             return tmp;
         }else
@@ -241,7 +241,7 @@ int isInLinkList(p_link link, p_link *linklist)
 }
 p_link linkExists(p_node start, p_node ziel, p_link *linklist)
 {
-    p_link tmp = *linklist;
+        p_link tmp = *linklist;
     while(tmp != 0)
     {
         if(((tmp->start == start) && (tmp->ziel == ziel)|| (tmp->start == ziel) && (tmp->ziel == start)))
@@ -259,4 +259,104 @@ void deleteLink(p_link *link)
 {
     xfree(*link);
     *link = 0;
+}
+void printStructure(p_node *nodelist)
+{
+    p_node tmpNode;
+    p_link tmpLink;
+    tmpNode = *nodelist;
+    int nodecount = 0;
+    int maxNameLength = 0;
+    int currentNamelength = 0;
+    char tmpChar = 0;
+    //Lese Grundliegende Eigenschaften der Struktur
+    while(tmpNode != 0)
+    {
+        nodecount++;
+        currentNamelength = 0;
+        tmpChar = tmpNode->name[0];
+        while(tmpChar != 0 && currentNamelength < MAX_IDENT)
+        {
+            currentNamelength++;
+            tmpChar = tmpNode->name[currentNamelength];
+        }
+        if(currentNamelength > maxNameLength){
+            maxNameLength = currentNamelength;
+        }
+        tmpNode = tmpNode->nachfolger;
+    }
+    //Die Breite der Spalten sollte nun so breit sein wie die längste Beschreibung
+    //Außerdem steht die Anzahl der Spalten nun fest.
+    for(int i = 0; i < maxNameLength; i++)
+    {
+        fprintf(stdout, "-");
+    }
+    fprintf(stdout,"|");
+    fprintf(stdout,"|");
+    for(int j = 0; j < nodecount; j++)
+    {
+        for(int i = 0; i < maxNameLength; i++)
+        {
+            fprintf(stdout, "-");
+        }
+        fprintf(stdout,"|");
+    }
+    fprintf(stdout,"\n");
+    for(int i = 0; i < maxNameLength; i++)
+    {
+        fprintf(stdout, " ");
+    }
+    fprintf(stdout,"|");
+    fprintf(stdout,"|");
+    tmpNode = *nodelist;
+    while(tmpNode != 0)
+    {
+        fprintf(stdout, "%*s", maxNameLength ,tmpNode->name);
+        tmpNode = tmpNode->nachfolger;
+        fprintf(stdout,"|");
+    }
+    fprintf(stdout,"\n");
+    for(int i = 0; i < maxNameLength; i++)
+    {
+        fprintf(stdout, "-");
+    }
+    fprintf(stdout,"|");
+    fprintf(stdout,"|");
+    for(int j = 0; j < nodecount; j++)
+    {
+        for(int i = 0; i < maxNameLength; i++)
+        {
+            fprintf(stdout, "-");
+        }
+        fprintf(stdout,"|");
+    }
+    fprintf(stdout,"\n");
+    //Gehe für jede Zeile durch
+    tmpNode = *nodelist;
+    p_node tmpNodeSpalte;
+    while(tmpNode != 0)
+    {
+        fprintf(stdout, "%*s", maxNameLength ,tmpNode->name);
+        fprintf(stdout,"|");
+        fprintf(stdout,"|");
+        //Nun jede Spalte durchgehen
+        tmpNodeSpalte = *nodelist;
+        while(tmpNodeSpalte != 0)
+        {
+            tmpLink = linkExists(tmpNode, tmpNodeSpalte, &tmpNode->plink);
+            if(tmpLink != 0){
+                fprintf(stdout, "%*d", maxNameLength, tmpLink->kosten);
+            }else
+            {
+                fprintf(stdout, "%*s", maxNameLength, "-");
+            }
+            tmpNodeSpalte = tmpNodeSpalte->nachfolger;
+            fprintf(stdout,"|");
+        }
+
+        tmpNode = tmpNode->nachfolger;
+        fprintf(stdout,"\n");
+    }
+
+    fprintf(stdout, "Anzahl Nodes: %d und maxNameLength: %d", nodecount, maxNameLength);
 }

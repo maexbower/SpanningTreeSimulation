@@ -1,21 +1,21 @@
 Graph mygraph {
     //Node-IDs
-    A = 5;
-    B = 1;
-    C = 3;
-    D = 7;
-    E = 6;
-    F = 4;
+    A123 = 5;
+    Bkfljdlkwjf123 = 1;
+    Cdfa = 3;
+    D2134 = 7;
+    Ekj21lkj3lk1 = 6;
+    F1nuoiren72er2 = 4;
 
     //Kanten
-    A - B : 10;
-    A - C : 10;
-    B - D : 15;
-    B - E : 10;
-    C - D : 3;
-    C - E : 10;
-    D - E : 2;
-    D - F : 10;
-    E - F : 2;
+    A123 - Bkfljdlkwjf123 : 10;
+    A123 - Cdfa : 10;
+    Bkfljdlkwjf123 - D2134 : 15;
+    Bkfljdlkwjf123 - Ekj21lkj3lk1 : 10;
+    Cdfa - D2134 : 3;
+    Cdfa - Ekj21lkj3lk1 : 10;
+    D2134 - Ekj21lkj3lk1 : 2;
+    D2134 - F1nuoiren72er2 : 10;
+    Ekj21lkj3lk1 - F1nuoiren72er2 : 2;
 
 }
