@@ -53,3 +53,28 @@ char* ptoa(void *pointer)
     sprintf(string, "%p", pointer);
     return string;
 }
+int stringlength(char *string)
+{
+    int count = 0;
+    char tmpChar;
+    tmpChar = string[0];
+    while(tmpChar != 0)
+    {
+        count++;
+        tmpChar = string[count];
+    }
+    return count;
+
+}
+int numcount(int integer)
+{
+    if(integer == 0) {
+        return 1;
+    }
+    if(integer < 0)
+    {
+        integer=integer*-1;
+    }
+    int count = (int)floor(log10(integer)) + 1;
+    return count;
+}

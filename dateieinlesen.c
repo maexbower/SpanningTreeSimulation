@@ -20,6 +20,7 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 	char puffer[ZEILENLAENGE];
 	char knotenA[MAX_IDENT];
 	char knotenB[MAX_IDENT];
+    char tmpBuffer[999];
 	int kosten;
 	int id;
 	int i, count,r_count;
@@ -57,10 +58,16 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 				if(puffer[i] == IDTRENNZEICHEN){
                     writeDebug("HIER KOMMT EIN KNOTEN");
 					sscanf(puffer, "%s = %d" , knotenA, &id);
-					printf("Knoten: %s mit der ID: %d\n", knotenA, id);
+					sprintf(tmpBuffer,"Knoten: %s mit der ID: %d\n", knotenA, id);
+                    writeDebug(tmpBuffer);
+					if(stringlength(knotenA) > MAX_IDENT)
+					{
+						writeDebug("KnotenIDENT zu lange. Überspringe.");
+						continue;
+					}
 					p_node nodeA = nodeExitsByName(knotenA, nodelist);
 					if(nodeA == 0){
-						nodeA = createNode(knotenA, MAX_NODE_ID);
+						nodeA = createNode(knotenA, id);
 						addNewNode(nodeA, nodelist);
 					}else{
 						writeDebug("Node existiert bereits. Dies sollte nicht passieren.");
@@ -69,11 +76,22 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 				else if(puffer[i] == KOSTENTRENNZEICHEN){
                     writeDebug("HIER KOMMT EINE ZUWEISUNG");
 					sscanf(puffer,"%s - %s : %d", knotenA, knotenB, &kosten);
-					printf("Knoten: %s und Konten: %s haben eine Verbindung: %d\n", knotenA, knotenB, kosten);
+					sprintf(tmpBuffer, "Knoten: %s und Konten: %s haben eine Verbindung: %d\n", knotenA, knotenB, kosten);
+                    writeDebug(tmpBuffer);
+                    if(stringlength(knotenA) > MAX_IDENT)
+					{
+						writeDebug("KnotenIDENT zu lange. Überspringe.");
+						continue;
+					}
+					if(stringlength(knotenB) > MAX_IDENT)
+					{
+						writeDebug("KnotenIDENT zu lange. Überspringe.");
+						continue;
+					}
 					//Checke ob Knoten A in Nodelist
 					p_node nodeA = nodeExitsByName(knotenA, nodelist);
 					if(nodeA == 0){
-                        writeDebug("Knoten 1 existiert noch nicht.");
+						writeDebug("Knoten 1 existiert noch nicht.");
 						nodeA = createNode(knotenA, MAX_NODE_ID);
 						addNewNode(nodeA, nodelist);
 					}
@@ -90,8 +108,7 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 		}
 
 		//AUSGABE DER EINGELESENEN ZEILE
-		printf("%s", puffer);
-
+		writeDebug(puffer);
 		//PUFFER MIT 0 INITIALISIEREN
 		for(i=0;i<ZEILENLAENGE;i++){
 			puffer[i]=0;
@@ -165,7 +182,7 @@ p_node addNewNode(p_node node, p_node *nodelist)
 	}
 	//füge alle bestehenden Nodes zur Linklist hinzu.
 	addNodeToList(node, nodelist);
-	printNode(node);
+	//printNode(node);
 	return *nodelist;
 }
 p_node addNewLink(p_node start, p_node ziel, int kosten, p_node *nodelist)
