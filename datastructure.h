@@ -58,3 +58,5 @@ p_link linkExists(p_node start, p_node ziel, p_link *linklist);
 //Delete
 void deleteNode(p_node *node);
 void deleteLink(p_link *link);
+//Count
+int countNodes(p_node *nodelist);

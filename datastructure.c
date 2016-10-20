@@ -265,14 +265,13 @@ void printStructure(p_node *nodelist)
     p_node tmpNode;
     p_link tmpLink;
     tmpNode = *nodelist;
-    int nodecount = 0;
+    int nodecount = countNodes(nodelist);
     int maxNameLength = 0;
     int currentNamelength = 0;
     char tmpChar = 0;
     //Lese Grundliegende Eigenschaften der Struktur
     while(tmpNode != 0)
     {
-        nodecount++;
         currentNamelength = 0;
         tmpChar = tmpNode->name[0];
         while(tmpChar != 0 && currentNamelength < MAX_IDENT)
@@ -359,4 +358,16 @@ void printStructure(p_node *nodelist)
     }
 
     fprintf(stdout, "Anzahl Nodes: %d und maxNameLength: %d", nodecount, maxNameLength);
+}
+int countNodes(p_node *nodelist)
+{
+    int count = 0;
+    p_node tmpNode;
+    tmpNode = *nodelist;
+    while(tmpNode != 0)
+    {
+        count++;
+        tmpNode = tmpNode->nachfolger;
+    }
+    return count;
 }

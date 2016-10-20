@@ -14,10 +14,10 @@
 
 //Parameter zum Auslesen der Topologie
 #define ZEILENLAENGE 255
-#define KOMMENTARSTR "//"   //String mit dem eine Kommentar beginnt
-#define ZEILENENDE ";"      //Zeichen am Ende der Zeile
-#define IDTRENNZEICHEN "="       //mögliche Zeichen um Zuweisungen zu machen
+#define KOMMENTARCHAR '/'   //String mit dem eine Kommentar beginnt
+#define IDTRENNZEICHEN '='       //mögliche Zeichen um Zuweisungen zu machen
 #define KOSTENTRENNZEICHEN '-'        //Zeichen zwischen zwei Elementen
+#define IGNORECHAR ' '        //Zeichen das ignoriert wird
 
 //Standardwerte für Nodes
 #define STDLINK 0

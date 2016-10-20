@@ -36,20 +36,25 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 	for(i=0;i<ZEILENLAENGE;i++){
 				puffer[i]=0;
 	}
-
+	r_count = 0; //Zeilenzähler
 	//DATEN AUS STRING AUSLESEN
 	while(fgets(puffer, ZEILENLAENGE, graph) != NULL){
-
+		if(r_count >= MAX_ITEMS)
+		{
+			writeDebug("Maximale Anzahl an Einträgen in Topologiedatei überschritten.");
+			break;
+		}
+		r_count++;
 		count=0;
-		while(puffer[count] == ' ' && count+1 < ZEILENLAENGE ){
+		while(puffer[count] == IGNORECHAR && count+1 < ZEILENLAENGE ){
 			count=count+1;
 		}
-		if(puffer[count] == '/' && puffer[count+1] == '/'){
+		if(puffer[count] == KOMMENTARCHAR && puffer[count+1] == KOMMENTARCHAR){
             writeDebug("HIER KOMMT EIN KOMMENTAR");
 		}
 		else{
 			for(i=count;i<ZEILENLAENGE;i++){
-				if(puffer[i] == '='){
+				if(puffer[i] == IDTRENNZEICHEN){
                     writeDebug("HIER KOMMT EIN KNOTEN");
 					sscanf(puffer, "%s = %d" , knotenA, &id);
 					printf("Knoten: %s mit der ID: %d\n", knotenA, id);
@@ -61,7 +66,7 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 						writeDebug("Node existiert bereits. Dies sollte nicht passieren.");
 					}
 				}
-				else if(puffer[i] == '-'){
+				else if(puffer[i] == KOSTENTRENNZEICHEN){
                     writeDebug("HIER KOMMT EINE ZUWEISUNG");
 					sscanf(puffer,"%s - %s : %d", knotenA, knotenB, &kosten);
 					printf("Knoten: %s und Konten: %s haben eine Verbindung: %d\n", knotenA, knotenB, kosten);
@@ -165,6 +170,11 @@ p_node addNewNode(p_node node, p_node *nodelist)
 }
 p_node addNewLink(p_node start, p_node ziel, int kosten, p_node *nodelist)
 {
+	if(kosten > MAX_KOSTEN)
+	{
+		writeDebug("Die Kosten überschreiten die MAXIMALEN Kosten.");
+		kosten = MAX_KOSTEN;
+	}
 	p_link tmpLink;
 	//Add new Node to existing Node Linklist
 	tmpLink = linkExists(start, ziel, &start->plink);
