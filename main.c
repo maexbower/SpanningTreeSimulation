@@ -32,7 +32,14 @@ int main(int argc, char* argv[])
     writeDebug("Öffne Datei");
     p_node nodelist;
     nodelist = 0;
+    //Datei Einlesen
     dateieinlesen(filename, &nodelist);
+    //Konsitenzprüfung
+    if(checkDatenKonsitenz(&nodelist)>0)
+    {
+        fprintf(stdout, "Es wurde ein Fehler in der Datenkonsitenz gefunden. Bitte kontrollieren Sie die Topologie Datei.\n");
+        return 1;
+    }
     //ToDo start Spanning Tree Actions
     printStructure(&nodelist);
 

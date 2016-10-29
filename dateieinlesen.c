@@ -58,7 +58,7 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 				if(puffer[i] == IDTRENNZEICHEN){
                     writeDebug("HIER KOMMT EIN KNOTEN");
 					sscanf(puffer, "%s = %d" , knotenA, &id);
-					sprintf(tmpBuffer,"Knoten: %s mit der ID: %d\n", knotenA, id);
+					sprintf(tmpBuffer,"Knoten: %s mit der ID: %d", knotenA, id);
                     writeDebug(tmpBuffer);
 					if(stringlength(knotenA) > MAX_IDENT)
 					{
@@ -70,7 +70,8 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 						nodeA = createNode(knotenA, id);
 						addNewNode(nodeA, nodelist);
 					}else{
-						writeDebug("Node existiert bereits. Dies sollte nicht passieren.");
+						writeDebug("Node existiert bereits. Setze ID.");
+                        nodeA->nodeID = id;
 					}
 				}
 				else if(puffer[i] == KOSTENTRENNZEICHEN){
@@ -92,14 +93,14 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 					p_node nodeA = nodeExitsByName(knotenA, nodelist);
 					if(nodeA == 0){
 						writeDebug("Knoten 1 existiert noch nicht.");
-						nodeA = createNode(knotenA, MAX_NODE_ID);
+						nodeA = createNode(knotenA, STDNODEID);
 						addNewNode(nodeA, nodelist);
 					}
 					//Checke ob Knoten B in Nodelist
 					p_node nodeB = nodeExitsByName(knotenB, nodelist);
 					if(nodeB == 0) {
                         writeDebug("Knoten 2 existiert noch nicht.");
-						nodeB = createNode(knotenB, MAX_NODE_ID);
+						nodeB = createNode(knotenB, STDNODEID);
 						addNewNode(nodeB, nodelist);
 					}
                     addNewLink(nodeA, nodeB, kosten, nodelist);

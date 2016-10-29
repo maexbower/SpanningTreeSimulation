@@ -26,6 +26,7 @@
 #define STDCOSTSTOROOT 0
 #define STDNACHFOLGER 0
 #define STDVORGAENGER 0
+#define STDNODEID -1
 //Standardwerte für Links
 #define STDCOST 0
 //Alles Andere wird durch gegebene Werte oder das Element selbst ersetzt.

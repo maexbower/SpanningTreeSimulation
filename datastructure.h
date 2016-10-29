@@ -60,3 +60,4 @@ void deleteNode(p_node *node);
 void deleteLink(p_link *link);
 //Count
 int countNodes(p_node *nodelist);
+int checkDatenKonsitenz(p_node *nodelist);

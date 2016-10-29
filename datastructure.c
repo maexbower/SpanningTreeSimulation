@@ -371,3 +371,43 @@ int countNodes(p_node *nodelist)
     }
     return count;
 }
+int checkDatenKonsitenz(p_node *nodelist)
+{
+    //prüfe auf nicht definierte Nodes
+    p_node tmpNode;
+    p_link tmpLink;
+    int linkcheck;
+    tmpNode = *nodelist;
+    while(tmpNode != 0)
+    {
+        if(tmpNode->nodeID == STDNODEID)
+        {
+            writeDebug("Konsitenzprüfung fehlgeschlagen. Ein Node wurde nicht definiert.");
+            return 1;
+        }
+        tmpNode = tmpNode->nachfolger;
+    }
+    //prüfe auf nicht verbundene Nodes
+    tmpNode = *nodelist;
+    while(tmpNode != 0)
+    {
+        writeDebug("Node:");
+        writeDebug(tmpNode->name);
+        linkcheck = 0;
+        tmpLink = tmpNode->plink;
+        while(tmpLink != 0)
+        {
+            if(tmpLink->kosten != STDCOST)
+            {
+                linkcheck = 1;
+            }
+            tmpLink = tmpLink->nachfolger;
+        }
+        if(linkcheck == 0)
+        {
+            writeDebug("Konsitenzprüfung fehlgeschlagen. Ein Node ist nicht angeschlossen.");
+            return 2;
+        }
+        tmpNode = tmpNode->nachfolger;
+    }
+}

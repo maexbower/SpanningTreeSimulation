@@ -1,21 +1,21 @@
 Graph mygraph {
-    //Node-IDs
-    A123 = 5;
-    Bkfljdlkwjf123 = 1;
-    Cdfa = 3;
-    D2134 = 7;
-    Ekj21lkj3lk1 = 6;
-    F1nuoiren72er2 = 4;
-
     //Kanten
-    A123 - Bkfljdlkwjf123 : 10;
-    A123 - Cdfa : 10;
-    Bkfljdlkwjf123 - D2134 : 15;
-    Bkfljdlkwjf123 - Ekj21lkj3lk1 : 10;
-    Cdfa - D2134 : 3;
-    Cdfa - Ekj21lkj3lk1 : 10;
-    D2134 - Ekj21lkj3lk1 : 2;
-    D2134 - F1nuoiren72er2 : 10;
-    Ekj21lkj3lk1 - F1nuoiren72er2 : 2;
+    3ea8666c5a63 - 005056c00008 : 10;
+    3ea8666c5a63 - 005056c00001 : 10;
+    005056c00008 - 507b9d18ade2 : 15;
+    005056c00008 - 005056c00003 : 10;
+    005056c00001 - 507b9d18ade2 : 3;
+    005056c00001 - 005056c00003 : 10;
+    507b9d18ade2 - 005056c00003 : 2;
+    507b9d18ade2 - 005056c00004 : 10;
+    005056c00003 - 005056c00004 : 2;
+    //Node-IDs
+    3ea8666c5a63 = 5;
+    005056c00008 = 1;
+    005056c00001 = 3;
+    507b9d18ade2 = 7;
+    005056c00003 = 6;
+    005056c00004 = 4;
+
 
 }
