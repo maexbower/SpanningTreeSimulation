@@ -67,7 +67,7 @@ void testfunction(char* filename)
         writeDebug("Füge zweiten Node hinzu:");
         addNodeToList(testnode2,&nodelist);
         writeDebug("Das Element 1 befindet sich in der Liste?");
-        writeDebug(itoa(isInNodeList(testnode, &nodelist)));
+        writeDebug(xitoa(isInNodeList(testnode, &nodelist)));
         writeDebug("Das Element der Name Beta1 befindet sich in der Liste?");
         writeDebug(ptoa(nodeExitsByName("Beta1", &nodelist)));
         writeDebug("Das Element der ID 1 befindet sich in der Liste?");
@@ -78,7 +78,7 @@ void testfunction(char* filename)
         deleteNode(&testnode);
         printNode(testnode);
         writeDebug("Das Element 1 befindet sich in der Liste?");
-        writeDebug(itoa(isInNodeList(testnode, &nodelist)));
+        writeDebug(xitoa(isInNodeList(testnode, &nodelist)));
         writeDebug("Die Nodeliste hat noch folgenden Pointer");
         writeDebug(ptoa(nodelist));
     }
@@ -88,7 +88,7 @@ void testfunction(char* filename)
     }else{
         addLinkToLinklist(testlink, &linklist);
         writeDebug("Das Element befindet sich noch in der Liste?");
-        writeDebug(itoa(isInLinkList(testlink, &linklist)));
+        writeDebug(xitoa(isInLinkList(testlink, &linklist)));
         writeDebug("Das Element von Node 1 zu 2 befindet sich noch in der Liste?");
         writeDebug(ptoa(linkExists(testnode, testnode2, &linklist)));
         writeDebug("Füge zweiten Link hinzu:");
@@ -99,7 +99,7 @@ void testfunction(char* filename)
         deleteLink(&testlink);
         printLink(testlink);
         writeDebug("Das Element befindet sich noch in der Liste?");
-        writeDebug(itoa(isInLinkList(testlink, &linklist)));
+        writeDebug(xitoa(isInLinkList(testlink, &linklist)));
         writeDebug("Die Linkliste hat noch folgenden Pointer");
         writeDebug(ptoa(linklist));
     }

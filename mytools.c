@@ -39,7 +39,7 @@ void xfree(void *pointer)
         writeDebug(strerror(errno));
     }
 }
-char* itoa (int integer)
+char* xitoa(int integer)
 {
     char *string;
     string = xmalloc(sizeof(integer) * sizeof(char) / sizeof(int));

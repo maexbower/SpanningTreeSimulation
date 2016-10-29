@@ -16,7 +16,7 @@
 void writeDebug(char* string);
 void* xmalloc(size_t size);
 void* xrealloc(void *pointer, size_t size);
-char* itoa (int integer);
+char* xitoa(int integer);
 char* ptoa(void *pointer);
 void xfree(void *pointer);
 int stringlength(char *string);

@@ -270,7 +270,6 @@ void printStructure(p_node *nodelist)
     int maxIDLength = 0;
     int currentNamelength = 0;
     int currentIDlength = 0;
-    char tmpChar = 0;
     //Lese Grundliegende Eigenschaften der Struktur
     while(tmpNode != 0)
     {
@@ -410,4 +409,5 @@ int checkDatenKonsitenz(p_node *nodelist)
         }
         tmpNode = tmpNode->nachfolger;
     }
+    return 0;
 }

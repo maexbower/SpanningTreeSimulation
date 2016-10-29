@@ -24,7 +24,7 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 	int kosten;
 	int id;
 	int i, count,r_count;
-	int read_count;
+	//int read_count;
 
 	//DATEI EINLESEN
 	graph = openFile(filepath);
@@ -64,6 +64,11 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 					{
 						writeDebug("KnotenIDENT zu lange. Überspringe.");
 						continue;
+					}
+					if(id > MAX_NODE_ID)
+					{
+						writeDebug("KnotenID zu hoch. Setze auf MAX_NODE_ID.");
+						id = MAX_NODE_ID;
 					}
 					p_node nodeA = nodeExitsByName(knotenA, nodelist);
 					if(nodeA == 0){
@@ -156,7 +161,7 @@ int closeFile(FILE *p_file)
 		return 1;
 	}
 	writeDebug("Datei wurde geschlossen. Der Returncode ist:");
-	writeDebug(itoa(result));
+	writeDebug(xitoa(result));
 	return 0;
 }
 p_node addNewNode(p_node node, p_node *nodelist)
