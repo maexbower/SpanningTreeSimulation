@@ -105,13 +105,13 @@ int isInNodeList(p_node node, p_node *nodelist)
     p_node tmp = *nodelist;
     while(tmp != 0)
     {
-       if(tmp == node)
-       {
-           return 1;
-       }else
-       {
-           tmp = tmp->nachfolger;
-       }
+        if(tmp == node)
+        {
+            return 1;
+        }else
+        {
+            tmp = tmp->nachfolger;
+        }
     }
     return 0;
 }
@@ -242,7 +242,7 @@ int isInLinkList(p_link link, p_link *linklist)
 }
 p_link linkExists(p_node start, p_node ziel, p_link *linklist)
 {
-        p_link tmp = *linklist;
+    p_link tmp = *linklist;
     while(tmp != 0)
     {
         if(((tmp->start == start) && (tmp->ziel == ziel)|| (tmp->start == ziel) && (tmp->ziel == start)))
