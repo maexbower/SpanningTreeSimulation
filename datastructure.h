@@ -65,3 +65,5 @@ int countNodes(p_node *nodelist);
 int checkDatenKonsitenz(p_node *nodelist);
 //Diverses
 p_node getRandomNode(p_node *nodelist);
+p_node findroot(p_node start);
+p_node nearestRoot(p_node start);

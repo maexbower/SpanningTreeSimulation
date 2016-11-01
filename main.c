@@ -9,10 +9,8 @@
 #endif //SPANNINGTREE_DATASTRUCTURE_H
 #ifndef SPANNINGTREE_DATEIEINLESEN_H
 #include "dateieinlesen.h"
-#endif //SPANNINGTREE_DATEIEINLESEN_H
-#ifndef DIJKSTRA_DIJKSTRA_H
-#include "findroot.h"
-#endif //DIJKSTRA_DIJKSTRA_H
+#endif //EINLESEN_H
+
 
 int main(int argc, char* argv[])
 {
@@ -51,7 +49,7 @@ int main(int argc, char* argv[])
     {
         srand(1);
     }
-    for(int i = 1; i< 100; i++)
+    for(int i = 1; i< 20; i++)
     {
         //fprintf(stdout, "Suche besten Weg %d\n", i);
         findroot(getRandomNode(&nodelist));
