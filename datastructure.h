@@ -12,11 +12,13 @@
 #include "mytools.h"
 #endif //SPANNINGTREE_MYTOOLS_H
 
+
 ////////////////////////////////
 // define Structures
 ////////////////////////////////
 typedef struct link{
     int kosten;         //Kosten der Kante
+    int visited;        //Marker ob Link schon verarbeitet wurde
     struct node *start; //Node am einen Ende
     struct node *ziel;  //Node am anderen Ende
     struct link *vorgaenger;
@@ -61,3 +63,5 @@ void deleteLink(p_link *link);
 //Count
 int countNodes(p_node *nodelist);
 int checkDatenKonsitenz(p_node *nodelist);
+//Diverses
+p_node getRandomNode(p_node *nodelist);

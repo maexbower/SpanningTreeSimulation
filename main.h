@@ -29,6 +29,14 @@
 #define STDNODEID -1
 //Standardwerte für Links
 #define STDCOST 0
+#define STDVISITED 0
+
+//Parameter zur darstellung
+#define MINCHARSFORNAME 12
+
+//Parameter fuer die Berechnung
+#define USESTATICRAND 0
+#define DEBUG 0
 //Alles Andere wird durch gegebene Werte oder das Element selbst ersetzt.
 
 ////////////////////////////////

@@ -174,14 +174,14 @@ p_node addNewNode(p_node node, p_node *nodelist)
 		tmpLink = linkExists(node, tmpNode, &tmpNode->plink);
 		if(tmpLink == 0)
 		{
-			tmpLink = createLink(STDCOST, &node, &tmpNode);
+			tmpLink = createLink(STDCOST, &tmpNode, &node);
 			addLinkToLinklist(tmpLink, &tmpNode->plink);
 		}
 		//Add existing Node to new Node Linklist
 		tmpLink = linkExists(node, tmpNode, &node->plink);
 		if(tmpLink == 0)
 		{
-			tmpLink = createLink(STDCOST, &node, &tmpNode);
+			tmpLink = createLink(STDCOST, &node, &tmpNode); // Link muss immer von Node ausgesehen angelegt werden.
 			addLinkToLinklist(tmpLink, &node->plink);
 		}
 		tmpNode = tmpNode->nachfolger;

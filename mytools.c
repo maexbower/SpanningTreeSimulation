@@ -1,7 +1,9 @@
 //
 // Created by max on 19.10.16.
 //
-
+#ifndef SPANNINGTREE_MAIN_H
+#include "main.h"
+#endif //SPANNINGTREE_MAIN_H
 #ifndef SPANNINGTREE_MYTOOLS_H
 #include "mytools.h"
 #endif //SPANNINGTREE_MYTOOLS_H
@@ -10,7 +12,11 @@
 ////////////////////////////////
 void writeDebug(char* string)
 {
-    fprintf(stdout, "DEBUG: %s\n",string);
+    if(DEBUG == 1)
+    {
+        fprintf(stdout, "DEBUG: %s\n",string);
+        fflush(stdout);
+    }
 }
 void* xmalloc(size_t size)
 {

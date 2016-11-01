@@ -10,6 +10,9 @@
 #ifndef SPANNINGTREE_DATEIEINLESEN_H
 #include "dateieinlesen.h"
 #endif //SPANNINGTREE_DATEIEINLESEN_H
+#ifndef DIJKSTRA_DIJKSTRA_H
+#include "findroot.h"
+#endif //DIJKSTRA_DIJKSTRA_H
 
 int main(int argc, char* argv[])
 {
@@ -41,7 +44,20 @@ int main(int argc, char* argv[])
         return 1;
     }
     //ToDo start Spanning Tree Actions
+    fprintf(stdout, "Datei wurde eingelesen. Dies ist der aktuelle Stand:\n");
     printStructure(&nodelist);
+    srand((unsigned)time(NULL));
+    if (USESTATICRAND == 1)
+    {
+        srand(1);
+    }
+    for(int i = 1; i< 100; i++)
+    {
+        fprintf(stdout, "Suche besten Weg %d\n", i);
+        findroot(getRandomNode(&nodelist));
+        fprintf(stdout, "Die Struktur hat sich wie folgt geaendert:\n");
+        printStructure(&nodelist);
+    }
 
     //testfunction(filename);
     return 0;

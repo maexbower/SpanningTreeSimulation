@@ -168,6 +168,7 @@ p_link createLink(int new_kosten, p_node *new_start, p_node *new_ziel)
     kante->ziel = *new_ziel;
     kante->nachfolger = STDNACHFOLGER;
     kante->vorgaenger = STDVORGAENGER;
+    kante->visited = STDVISITED;
     return kante;
 }
 //Ausgeben
@@ -284,6 +285,10 @@ void printStructure(p_node *nodelist)
         }
         tmpNode = tmpNode->nachfolger;
     }
+    if(maxNameLength < MINCHARSFORNAME)
+    {
+        maxNameLength = MINCHARSFORNAME; //nur zu Darstellungszwecken
+    }
     //Die Breite der Spalten sollte nun so breit sein wie die längste Beschreibung
     //Außerdem steht die Anzahl der Spalten nun fest.
     for(int i = 0; i < maxNameLength+2+maxIDLength; i++)
@@ -333,6 +338,8 @@ void printStructure(p_node *nodelist)
     //Gehe für jede Zeile durch
     tmpNode = *nodelist;
     p_node tmpNodeSpalte;
+    char* color = RESET;
+    char tmpString[255];
     while(tmpNode != 0)
     {
         fprintf(stdout, "%*s(%*d)", maxNameLength ,tmpNode->name,maxIDLength , tmpNode->nodeID);
@@ -344,10 +351,24 @@ void printStructure(p_node *nodelist)
         {
             tmpLink = linkExists(tmpNode, tmpNodeSpalte, &tmpNode->plink);
             if(tmpLink != 0){
-                fprintf(stdout, "%*d", maxNameLength+2+maxIDLength, tmpLink->kosten);
+                if(tmpLink->visited == 0)
+                {
+                    color = BLU; //nicht besuchte Links werden blau dargestellt
+                }else{
+                    color = GRN; //wurde ein Link mindestens ein mal verarbeitet, so wird er gruen dargestellt.
+                }
+                sprintf(tmpString, "%d",tmpLink->kosten);
+                if(tmpNode->root == tmpNodeSpalte)
+                {
+                    sprintf(tmpString, "%s (r k:%d)", tmpString, tmpNode->costsToRoot);
+                }
+                fprintf(stdout,"%s %*s %s", color,  maxNameLength+0+maxIDLength, tmpString, RESET);
+                color = RESET;
             }else
             {
-                fprintf(stdout, "%*s", maxNameLength+2+maxIDLength, "-");
+                color = RED;
+                fprintf(stdout, "%s %*c %s", color, maxNameLength+0+maxIDLength, '-', RESET);
+                color = RESET;
             }
             tmpNodeSpalte = tmpNodeSpalte->nachfolger;
             fprintf(stdout,"|");
@@ -355,8 +376,9 @@ void printStructure(p_node *nodelist)
 
         tmpNode = tmpNode->nachfolger;
         fprintf(stdout,"\n");
+        fflush(stdout);
     }
-    fprintf(stdout, "Anzahl Nodes: %d und maxNameLength: %d", nodecount, maxNameLength);
+    fprintf(stdout, "Anzahl Nodes: %d und maxNameLength: %d\n", nodecount, maxNameLength);
 }
 int countNodes(p_node *nodelist)
 {
@@ -410,4 +432,17 @@ int checkDatenKonsitenz(p_node *nodelist)
         tmpNode = tmpNode->nachfolger;
     }
     return 0;
+}
+p_node getRandomNode(p_node *nodelist) {
+    p_node node;
+    node = *nodelist;
+    int randomNumber = rand()% countNodes(nodelist);
+    writeDebug("Zufallszahl ist:");
+    writeDebug(xitoa(randomNumber));
+    fprintf(stdout, "Zufallszahl: %d \n",randomNumber);
+    for(int i = 0; i < randomNumber; i++)
+    {
+        node = node->nachfolger;
+    }
+    return node;
 }
