@@ -62,13 +62,19 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
                     writeDebug(tmpBuffer);
 					if(stringlength(knotenA) > MAX_IDENT)
 					{
-						writeDebug("KnotenIDENT zu lange. Überspringe.");
+						//writeDebug("KnotenIDENT zu lange. Überspringe.");
+						fprintf(stdout,"KnotenIDENT zu lange. Überspringe.\n");
 						continue;
 					}
 					if(id > MAX_NODE_ID)
 					{
 						writeDebug("KnotenID zu hoch. Setze auf MAX_NODE_ID.");
 						id = MAX_NODE_ID;
+					}
+					if(id <= 0)
+					{
+						fprintf(stdout,"KnotenID zu niedrig. Überspringe.\n");
+						continue;
 					}
 					p_node nodeA = nodeExitsByName(knotenA, nodelist);
 					if(nodeA == 0){

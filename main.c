@@ -53,12 +53,12 @@ int main(int argc, char* argv[])
     }
     for(int i = 1; i< 100; i++)
     {
-        fprintf(stdout, "Suche besten Weg %d\n", i);
+        //fprintf(stdout, "Suche besten Weg %d\n", i);
         findroot(getRandomNode(&nodelist));
-        fprintf(stdout, "Die Struktur hat sich wie folgt geaendert:\n");
-        printStructure(&nodelist);
+        //fprintf(stdout, "Die Struktur hat sich wie folgt geaendert:\n");
+        //printStructure(&nodelist);
     }
-
+    printStructure(&nodelist);
     //testfunction(filename);
     return 0;
 }

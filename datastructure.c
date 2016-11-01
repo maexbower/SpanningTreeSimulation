@@ -379,6 +379,21 @@ void printStructure(p_node *nodelist)
         fflush(stdout);
     }
     fprintf(stdout, "Anzahl Nodes: %d und maxNameLength: %d\n", nodecount, maxNameLength);
+    tmpNode = *nodelist;
+    //print Routes
+    fprintf(stdout, "Routen zum root Node:\n");
+    while(tmpNode != 0)
+    {
+        fprintf(stdout, "%s ", tmpNode->name);
+        tmpLink = linkExists(tmpNode, tmpNode->nextHop, &tmpNode->plink);
+        while(tmpLink != 0)
+        {
+            fprintf(stdout, "-> %s(%d) ", tmpLink->ziel->name, tmpLink->kosten);
+            tmpLink = linkExists(tmpLink->ziel, tmpLink->ziel->nextHop, &tmpLink->ziel->plink);
+        }
+        fprintf(stdout, "=> %s(%d)\n", tmpNode->root->name, tmpNode->costsToRoot);
+        tmpNode = tmpNode->nachfolger;
+    }
 }
 int countNodes(p_node *nodelist)
 {
@@ -439,7 +454,7 @@ p_node getRandomNode(p_node *nodelist) {
     int randomNumber = rand()% countNodes(nodelist);
     writeDebug("Zufallszahl ist:");
     writeDebug(xitoa(randomNumber));
-    fprintf(stdout, "Zufallszahl: %d \n",randomNumber);
+    //fprintf(stdout, "Zufallszahl: %d \n",randomNumber);
     for(int i = 0; i < randomNumber; i++)
     {
         node = node->nachfolger;

@@ -9,7 +9,7 @@ p_node findroot(p_node start)
     char tmpString[255];
     sprintf(tmpString, "Untersuche Node: %s", start->name);
     writeDebug(tmpString);
-    fprintf(stdout, "%s\n", tmpString);
+    //fprintf(stdout, "%s\n", tmpString);
     nearestRoot(start);
     return start;
 }
@@ -66,6 +66,7 @@ p_node nearestRoot(p_node start)
     {
         start->root = tmpNode->root;
         start->costsToRoot = kosten;
+        start->nextHop = tmpNode;
     }
     return tmpNode;
 }
