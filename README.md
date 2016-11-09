@@ -3,9 +3,13 @@
 C Project for Simulating the spanning tree protocol between nodes.
 (Dieses Projekt ist für den Kurs "Grundlagen Rechnernetze" der DHBW Stuttgart. Die Aufgabe kann von berechtigten Personen unter [DHBW Link Shibboleth](http://wwwlehre.dhbw-stuttgart.de/~sto/ba-intern/kt/kt1/lab/SpanTree.pdf))
 
-## Project Structure
+[Project Structure](#projStruc)
+[Main File](#mainFile)
 
-### Main File
+
+## <a name="projStruc"></a> Project Structure
+
+### <a name="mainFile"></a> Main File
 
 main.c
 
@@ -67,16 +71,19 @@ CMakeLists.txt
 This project is developed with CLion from JetBrains, so it uses cmake to compile.
 To build manual its recommend to follow these steps:
 
-    cd ProjectDir  //change into project dir
-    mkdir build    //create build directory
-    cd build       //change into the build dir
-    cmake ../      //run cmake on the project files
-    make           //run make on the makefile created by the cmake command above
-
+```Shell
+cd ProjectDir  #change into project dir
+mkdir build    #create build directory
+cd build       #change into the build dir
+cmake ../      #run cmake on the project files
+make           #run make on the makefile created by the cmake command above
+```
 ## Run
 
 To run this program you need to take care of the syntax:
-
-    spt <ToPo File> [Count of Iterations] [DEBUG]
-    Example: ./spt ./topologie.txt 100 DEBUG
-    NOTE: the program checks for the string DEBUG, if you write DBUG=0 it will activate DEBUG too.
+```Shell
+#spt <ToPo File> [Count of Iterations] [DEBUG]
+#Example: 
+./spt ./topologie.txt 100 DEBUG
+#NOTE: the program checks for the string DEBUG, if you write DBUG=0 it will activate DEBUG too.
+```
