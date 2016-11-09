@@ -6,11 +6,11 @@ C Project for Simulating the spanning tree protocol between nodes.
 |   Table of Content    |
 |-----------------------|
 |[Project Structure](#projStruc)|
-|  [Main File](#mainFile)|
-|  [My tools](#myTools)|
-|  [File IO Tools](#fileIO)|
-|  [Project Datastructure operations](#datastructure)|
-|  [Other Files](#otherFiles)|
+|&nbsp;&nbsp;&nbsp;[Main File](#mainFile)|
+|&nbsp;&nbsp;&nbsp;[My tools](#myTools)|
+|&nbsp;&nbsp;&nbsp;[File IO Tools](#fileIO)|
+|&nbsp;&nbsp;&nbsp;[Project Datastructure operations](#datastructure)|
+|&nbsp;&nbsp;&nbsp;[Other Files](#otherFiles)|
 |[Build](#build)|
 |[Run](#run)|
 
