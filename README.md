@@ -3,9 +3,11 @@
 C Project for Simulating the spanning tree protocol between nodes.
 (Dieses Projekt ist für den Kurs "Grundlagen Rechnernetze" der DHBW Stuttgart. Die Aufgabe kann von berechtigten Personen unter [DHBW Link Shibboleth](http://wwwlehre.dhbw-stuttgart.de/~sto/ba-intern/kt/kt1/lab/SpanTree.pdf))
 
-[Project Structure](#projStruc)
-[Main File](#mainFile)
-
+|   Table of Content    |
+|-----------------------|
+|[Project Structure](#projStruc)|
+|[Main File](#mainFile)|
+|[My tools](#myTools)|
 
 ## <a name="projStruc"></a> Project Structure
 
@@ -23,7 +25,7 @@ main.h
 
 >   main.h contains all global definitions like maximum values for the input data and symbol definitions.
     
-### My tools
+### <a name="myTools"></a> My tools
 
 mytools.c
 
