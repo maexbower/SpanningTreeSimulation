@@ -36,10 +36,8 @@
 
 //Parameter fuer die Berechnung
 #define USESTATICRAND 0
-#define DEBUG 0
 //Alles Andere wird durch gegebene Werte oder das Element selbst ersetzt.
 
 ////////////////////////////////
 // pre define Functions
 ////////////////////////////////
-void testfunction(char* filename);

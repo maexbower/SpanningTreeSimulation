@@ -1,3 +1,33 @@
+Graph mygraph {
+    //Node-IDs
+    A = 5;
+    B = 1;
+    C = 3;
+    D = 11;
+    E = 6;
+    F = 4;
+    G = 4;
+    H = 4;
+    I = 4;
+    J = 4;
+    //Kanten
+    A - B : 10;
+    A - C : 10;
+    B - D : 15;
+    H - J : 15;
+    G - J : 12;
+    B - E : 10;
+    C - D : 3;
+    C - E : 10;
+    C - I : 10;
+    J - I : 10;
+    D - E : 2;
+    D - G : 2;
+    A - H : 2;
+    D - F : 10;
+    E - F : 3;
+}
+//Bespiel mit MAC Adressen
 //Graph mygraph {
     //Kanten
 //    3ea8666c5a63 - 005056c00008 : 10;
@@ -17,22 +47,3 @@
 //    005056c00003 = 6;
 //    005056c00004 = 4;
 //}
-Graph mygraph {
-    //Kanten
-    A - B : 10;
-    A - C : 10;
-    B - D : 15;
-    B - E : 10;
-    C - D : 3;
-    C - E : 10;
-    D - E : 2;
-    D - F : 10;
-    E - F : 2;
-    //Node-IDs
-    A = 5;
-    B = 1;
-    C = 3;
-    D = 7;
-    E = 6;
-    F = 4;
-}

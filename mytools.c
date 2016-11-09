@@ -7,12 +7,13 @@
 #ifndef SPANNINGTREE_MYTOOLS_H
 #include "mytools.h"
 #endif //SPANNINGTREE_MYTOOLS_H
+
 ////////////////////////////////
 // Functions
 ////////////////////////////////
 void writeDebug(char* string)
 {
-    if(DEBUG == 1)
+    if(debugmode == 1)
     {
         fprintf(stdout, "DEBUG: %s\n",string);
         fflush(stdout);

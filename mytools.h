@@ -19,6 +19,7 @@
 //#define CYN   "\x1B[36m"
 //#define WHT   "\x1B[37m"
 //#define RESET "\x1B[00m"
+// Disabled colors because of problems in some terminals
 #define RED   ""
 #define GRN   ""
 #define YEL   ""
@@ -28,6 +29,7 @@
 #define WHT   ""
 #define RESET ""
 
+int debugmode; //Globale Debug Variable
 ////////////////////////////////
 // pre define Functions
 ////////////////////////////////

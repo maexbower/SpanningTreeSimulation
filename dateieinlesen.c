@@ -70,7 +70,7 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
                     }
                     if(id > MAX_NODE_ID)
                     {
-                        writeDebug("KnotenID zu hoch. Setze auf MAX_NODE_ID.");
+                        fprintf(stdout,"KnotenID zu hoch. Setze auf MAX_NODE_ID.\n");
                         id = MAX_NODE_ID;
                     }
                     if(id <= 0)
@@ -87,7 +87,7 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
                     	idDoppelt=id;
                     }
                     if( knotenA[0] < 'A' || ('Z' < knotenA[0] && knotenA[0] < 'a') || 'z' < knotenA[0] ){
-                    	writeDebug("Identifier A fängt nicht mit Buchstabe an. Überspringe.");
+                    	fprintf(stdout, "Identifier %s fängt nicht mit Buchstabe an. Überspringe.\n", knotenA);
                         continue;
                     }
                     p_node nodeA = nodeExitsByName(knotenA, nodelist);
@@ -106,29 +106,29 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
                     writeDebug(tmpBuffer);
                     if(stringlength(knotenA) > MAX_IDENT)
                     {
-                        writeDebug("KnotenIDENT zu lange. Überspringe.");
+                        fprintf(stdout,"KnotenIDENT %s zu lange. Überspringe.\n", knotenA);
                         continue;
                     }
                     if(stringlength(knotenB) > MAX_IDENT)
                     {
-                        writeDebug("KnotenIDENT zu lange. Überspringe.");
+                        fprintf(stdout,"KnotenIDENT %s zu lange. Überspringe.\n", knotenB);
                         continue;
                     }
                     if(strcmp(knotenA, knotenB) == 0)
                     {
-                    	writeDebug("Knoten mit sich selber verbunden. Überspringe.");
+                        fprintf(stdout,"Knoten %s mit sich selber verbunden. Überspringe.\n", knotenA);
                     	continue;
                     }
-                    if(kosten == 0){
+                    if(kosten == STDCOST){
                     	writeDebug("Kanten nicht verbunden. Überspringe.");
                     	continue;
                     }
                     if( knotenA[0] < 'A' || ('Z' < knotenA[0] && knotenA[0] < 'a') || 'z' < knotenA[0] ){
-                    	writeDebug("Identifier A fängt nicht mit Buchstabe an. Überspringe.");
+                        fprintf(stdout,"Identifier %s fängt nicht mit Buchstabe an. Überspringe.\n", knotenA);
                     	continue;
                     }
                     if( knotenB[0] < 'A' || ('Z' < knotenB[0] && knotenB[0] < 'a') || 'z' < knotenB[0] ){
-                    	writeDebug("Identifier B fängt nicht mit Buchstabe an. Überspringe.");
+                        fprintf(stdout,"Identifier %s fängt nicht mit Buchstabe an. Überspringe.\n",knotenB);
                     	continue;
                     }
                     //Checke ob Knoten A in Nodelist
@@ -160,8 +160,8 @@ int dateieinlesen(char* filepath, p_node *nodelist) {
 
     if(kleinsteID == idDoppelt)
     {
-    	printf("RootId doppelt");
-    	exit;
+    	printf("RootId ist doppelt\n");
+    	exit(EXIT_FAILURE);
     }
 
     closeFile(graph);
