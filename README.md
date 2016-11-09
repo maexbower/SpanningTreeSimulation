@@ -8,6 +8,11 @@ C Project for Simulating the spanning tree protocol between nodes.
 |[Project Structure](#projStruc)|
 |[Main File](#mainFile)|
 |[My tools](#myTools)|
+|[File IO Tools](#fileIO)|
+|[Project Datastructure operations](#datastructure)|
+|[Other Files](#otherFiles)|
+|[Build](#build)|
+|[Run](#run)|
 
 ## <a name="projStruc"></a> Project Structure
 
@@ -35,7 +40,7 @@ mytools.h
 
 >   mytools.h includes all nesacary standard libraries and contains the definitions of the color codes for printf.
 
-### File IO Tools
+### <a name="fileIO"></a> File IO Tools
 
 dateieinlesen.c
 >   dateieinlesen.c contains all functions that are nessacary to read the topology file. 
@@ -46,7 +51,7 @@ dateieinlesen.h
     
 >   dateieinlesen.h only contains the function definitions. 
 
-### Project Datastructure operations
+### <a name="datastructure"></a> Project Datastructure operations
 
 datastructure.c
 
@@ -58,7 +63,7 @@ datastructure.h
     
 >   datastructure.h contain all the struct definitions for the datastructure.
 
-### Other Files
+### <a name="otherFiles"></a> Other Files
 
 topologie.txt
 
@@ -68,7 +73,7 @@ CMakeLists.txt
 
 >   CMakeLists.txt contains all cmake options to build this project.
 
-## Build
+## <a name="build"></a> Build
 
 This project is developed with CLion from JetBrains, so it uses cmake to compile.
 To build manual its recommend to follow these steps:
@@ -80,7 +85,7 @@ cd build       #change into the build dir
 cmake ../      #run cmake on the project files
 make           #run make on the makefile created by the cmake command above
 ```
-## Run
+## <a name="run"></a> Run
 
 To run this program you need to take care of the syntax:
 ```Shell
