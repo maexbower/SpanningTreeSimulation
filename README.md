@@ -6,11 +6,11 @@ C Project for Simulating the spanning tree protocol between nodes.
 |   Table of Content    |
 |-----------------------|
 |[Project Structure](#projStruc)|
-|[Main File](#mainFile)|
-|[My tools](#myTools)|
-|[File IO Tools](#fileIO)|
-|[Project Datastructure operations](#datastructure)|
-|[Other Files](#otherFiles)|
+|  [Main File](#mainFile)|
+|  [My tools](#myTools)|
+|  [File IO Tools](#fileIO)|
+|  [Project Datastructure operations](#datastructure)|
+|  [Other Files](#otherFiles)|
 |[Build](#build)|
 |[Run](#run)|
 
@@ -76,14 +76,20 @@ CMakeLists.txt
 ## <a name="build"></a> Build
 
 This project is developed with CLion from JetBrains, so it uses cmake to compile.
+Because of the used IDE the following tools are needed to build the program:
+
+  * cmake
+  * make
+  * gcc
+
 To build manual its recommend to follow these steps:
 
 ```Shell
-cd ProjectDir  #change into project dir
-mkdir build    #create build directory
-cd build       #change into the build dir
-cmake ../      #run cmake on the project files
-make           #run make on the makefile created by the cmake command above
+cd /path/to/ProjectDir  #change into project dir
+mkdir build             #create build directory
+cd build                #change into the build dir
+cmake ../               #run cmake on the project files
+make                    #run make on the makefile created by the cmake command above
 ```
 ## <a name="run"></a> Run
 
